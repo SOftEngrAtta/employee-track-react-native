@@ -12,6 +12,8 @@ import { Dashboard } from '../components/dashboard/dashboard';
 import { getkey_data , setkey_data } from '../service/storage.service';
 import { checkUser } from '../service/auth.service';
 
+
+
 export class Routers extends Component {
 
     canActive(){
@@ -32,7 +34,7 @@ export class Routers extends Component {
 
     render() {
         return (
-            <Router>
+            <Router >
                 <Stack key="root" hideNavBar="true">
                     <Scene key="login" component={Login}  title="login" initial onEnter={ () => this.canActive() } />
                     <Scene key="singup" component={SignUp} title="signup"  onEnter={ () => this.canActive() } />

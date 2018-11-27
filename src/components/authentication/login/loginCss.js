@@ -1,17 +1,37 @@
 export const loginClass = {
-    "container" : {
-        "padding": "5%",
-        "background": "rgb(224, 224, 224)"
+    backgroundImage: {
+        flex: 1,
+        width: null,
+        height: null
     },
-    "resetPassword": {
-        // "margin": "2%",
-        "fontSize": "10",
-        // "color": "#1b2b34"
+    container : {
+        flex: 1,
+        width: "80%",
+        height: null,
+        justifyContent: 'center',
+        margin : "10%"
     },
-    "lgnBtn": {  
-        "border-radius":"5px",
-        "Text": {
-            "color": "#fff"
+    resetPassword: {
+        flexDirection : 'row',
+        margin: 5
+    },
+    lgnBtn: {  
+        borderRadius: 3,
+        Text: {
+            color : "#fff"
         }
+    },
+    imgParnt:{
+        justifyContent: 'center',
+        alignItems: 'center',
+
+    },
+    logoImage:{
+        borderRadius: 100,
+        width : 150 ,
+        height : 150
+    },
+    heading: {
+        fontSize: 40
     }
 }

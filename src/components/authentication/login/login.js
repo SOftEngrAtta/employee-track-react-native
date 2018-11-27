@@ -1,7 +1,9 @@
 //modules
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Icon } from 'react-native-elements'
+import { View, KeyboardAvoidingView , Text, ImageBackground , Image } from 'react-native';
+import { Icon } from 'react-native-elements';
+import { Avatar } from 'react-native-elements';
+import { material , robotoWeights } from 'react-native-typography';
 
 import { Container, Header, Content, Form, Item, Input, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
@@ -10,11 +12,15 @@ import { Actions } from 'react-native-router-flux';
 import { setkey_data } from '../../../service/storage.service';
 import { loginUser } from '../../../service/auth.service';
 
-//shared 
-import DisplayMessage from '../../../shared/toastr.service'
 
 //css
 import { loginClass } from './loginCss'
+
+//images
+import logo from '../../../assets/logo.png';
+import background from '../../../assets/background.jpg';
+
+
 
 
 
@@ -46,22 +52,31 @@ export class Login extends Component {
 
     render() {
         return (
-            <View style={loginClass.container}>
-
-                <Icon
-                    name='g-translate'
-                    color='#00aced' />
-                <Item>
-                    <Input type="text" placeholder="Email" onChangeText={(text) => { this.handler(text, 'email') }} value={this.state.email} />
-                </Item>
-                <Item last>
-                    <Input type="password" placeholder="Password" secureTextEntry={true} onChangeText={(text) => { this.handler(text, 'password') }} value={this.state.password} />
-                </Item>
-                <Text style={{ fontSize: 10, margin: "2%" }} > Reset Password </Text>
-                <Button style={loginClass.lgnBtn} full success onPress={() => this.loginUser()}>
-                    <Text style={loginClass.lgnBtn.Text}>Sign In</Text>
-                </Button>
-            </View>
+            <ImageBackground source={ background } style={loginClass.backgroundImage} resizeMode="stretch">
+                <KeyboardAvoidingView style={loginClass.container} >
+                    <View >
+                        <View style={loginClass.imgParnt}>
+                            <Text style={ loginClass.heading } style={ material.title }>Employee Tracking</Text>
+                            <Image style={ loginClass.logoImage} source={ logo}/>
+                        </View>                        
+                        <Item>
+                            <Input type="text" placeholder="Email" onChangeText={(text) => { this.handler(text, 'email') }} value={this.state.email} />
+                        </Item>
+                        <Item last>
+                            <Input type="password" placeholder="Password" secureTextEntry={true} onChangeText={(text) => { this.handler(text, 'password') }} value={this.state.password} />
+                        </Item>
+                        <View style={ loginClass.resetPassword}>
+                           <Icon name="lock" size={10} color="#ccc"/>
+                            <Text style={{ fontSize: 10, margin: "2%" }} style={ robotoWeights.thin }> 
+                                Forget Password 
+                            </Text>
+                        </View>
+                        <Button style={loginClass.lgnBtn} full success onPress={() => this.loginUser()}>
+                            <Text style={loginClass.lgnBtn.Text}>Sign In</Text>
+                        </Button>
+                    </View>
+                </KeyboardAvoidingView>
+            </ImageBackground>
         )
     }
 }
