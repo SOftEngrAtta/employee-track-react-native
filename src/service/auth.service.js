@@ -10,10 +10,16 @@ let datadb = database();
  * @param { Key } data.email
  * @param { Key } data.password
  */ 
-
-
-
 export const loginUser = (data) => _auth.signInWithEmailAndPassword(data['email'],data['password'])
+
+/**
+ * 
+ * @param {*Object} data
+ * @param { Key } data.email
+ * @param { Key } data.password 
+ */ 
+export const createAccount = (data) => _auth.createUserWithEmailAndPassword(data['email'],data['password'])
+
 
 /**
  * 

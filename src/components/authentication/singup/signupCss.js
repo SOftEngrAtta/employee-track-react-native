@@ -1,4 +1,4 @@
-export const loginClass = {
+export const signUpClass = {
     backgroundImage: {
         flex: 1,
         width: null,
@@ -15,7 +15,8 @@ export const loginClass = {
         flexDirection : 'row',
         margin: 5
     },
-    lgnBtn: {  
+    createAccnt: {  
+        marginTop: 40,
         borderRadius: 3,
         Text: {
             color : "#fff"
@@ -42,10 +43,11 @@ export const loginClass = {
         color: "#006ecc",
         fontSize: 14
     },
-    cretaeAccountPrnt:{alignItems: 'center', padding: 10},
-    createAccountCls: {
+    loginPrnt:{alignItems: 'center', padding: 10},
+    loginCls: {
         color: "#006ecc",
         fontSize: 10,
         alignItems: 'center'
     }
+    
 }
