@@ -21,6 +21,9 @@ export const loginUser = (data) => _auth.signInWithEmailAndPassword(data['email'
 export const createAccount = (data) => _auth.createUserWithEmailAndPassword(data['email'],data['password'])
 
 
+export const resetPassword = (data) => _auth.confirmPasswordReset()
+
+
 /**
  * 
  * @param {*Key} Id 

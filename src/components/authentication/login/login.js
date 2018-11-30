@@ -1,6 +1,6 @@
 //modules
 import React, { Component } from 'react';
-import { View, KeyboardAvoidingView, Text, ImageBackground, Image, ToastAndroid } from 'react-native';
+import { View, KeyboardAvoidingView, Text, ImageBackground, Image, ToastAndroid} from 'react-native';
 import { Icon } from 'react-native-elements';
 import { Avatar } from 'react-native-elements';
 import { material, robotoWeights } from 'react-native-typography';
@@ -14,7 +14,6 @@ import { setkey_data } from '../../../service/storage.service';
 import { loginUser } from '../../../service/auth.service';
 
 // shared 
-// import { Toastr } from '../../../shared/toastr.service';
 import { LoaderDisplay } from '../../../shared/loader.service'
 
 //css
@@ -64,7 +63,7 @@ export class Login extends Component {
             loginUser(this.state)
                 .then(res => {
                     this._displayLoader('hide');
-                    this.displayMessage('Login successfully', 2000);
+                    ToastAndroid.show('Login successfully', ToastAndroid.SHORT);
                     setkey_data({ 'KeyName': 'Id', 'KeyData': res.user._user.uid });
                     Actions.dashboard();
 
@@ -73,15 +72,12 @@ export class Login extends Component {
                     this._displayLoader('hide');
 
                     if (err && err.message) {
-                        // this.displayMessage("Error: " + err.message, 2000);
                         ToastAndroid.show(`Error:${err.message}`, ToastAndroid.SHORT);
                     } else {
-                        // this.displayMessage("Invalid username and password" + err.message, 2000);
                         ToastAndroid.show(`Invalid username and password:${err.message}`, ToastAndroid.SHORT);
                     }
                 })
         } else {
-            // this.displayMessage('Please enter email and password', 2000)
             ToastAndroid.show(`Please enter email and password`, ToastAndroid.SHORT);
         }
     }
@@ -93,17 +89,10 @@ export class Login extends Component {
     }
 
 
-    displayMessage(message, duration) {
-        let updateObj = Object.assign({}, this.state);
-        updateObj['errorToastr']['message'] = message;
-        updateObj['errorToastr']['timeduaration'] = duration;
-        this.setState(updateObj);
-    }
 
     render() {
         return (
             <ImageBackground source={background} style={loginClass.backgroundImage} resizeMode="stretch">
-                {/* <Toastr errormessage={this.state.errorToastr} /> */}
                 <KeyboardAvoidingView style={loginClass.container} >
                     <View >
                         <View style={loginClass.imgParnt}>
@@ -118,8 +107,8 @@ export class Login extends Component {
                         </Item>
                         <View style={loginClass.resetPassword}>
                             <Icon name="lock" size={10} color="#ccc" />
-                            <Text style={{ fontSize: 10, margin: "2%" }} style={robotoWeights.thin}>
-                                Forget Password
+                            <Text style={{ fontSize: 6, margin: 5 }} style={robotoWeights.thin}>
+                                Forgot Password
                             </Text>
                         </View>
                         <Button style={loginClass.lgnBtn} full success onPress={() => this.loginUser()}>

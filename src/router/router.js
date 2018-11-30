@@ -21,10 +21,10 @@ export class Routers extends Component {
     render() {
         return (
             <Router >
-                <Stack key="root" hideNavBar="true">
-                    <Scene key="login" component={Login}  title="login"  initial />
-                    <Scene key="signup" component={SignUp}  title="login" />
-                    <Scene key="dashboard" component={Dashboard} title="dashboard"  />
+                <Stack key="root" hideNavBar>
+                    <Scene key="login" component={Login}  title="login" />
+                    <Scene key="signup" component={SignUp}  title="signup" />
+                    <Scene key="dashboard" component={Dashboard} title="dashboard" initial/>
                 </Stack>
             </Router>
         )
