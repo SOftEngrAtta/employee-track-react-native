@@ -32,23 +32,22 @@ export class Login extends Component {
 
     constructor() {
         super();
-        this.state = {
-            email: '',
-            password: '',
-            message: null,
-            errorToastr: {
-                message: '',
-                timeduaration: 0
-            },
-            showLoader: {
-                loadingLoader: 'hide'
+        this.state = { 
+            email: '', 
+            password: '', 
+            message: null , 
+            errorToastr : {
+                message : '' , 
+                timeduaration : 0 
+            }, 
+            showLoader : {
+                loadingLoader : 'hide'
             }
         }
     }
 
     handler(text, key) {
         let updateObj = Object.assign({}, this.state);
-        console.log(updateObj)
         updateObj['errorToastr']['message'] = '';
         updateObj['errorToastr']['timeduaration'] = 0;
         updateObj[key] = text;
@@ -82,9 +81,9 @@ export class Login extends Component {
         }
     }
 
-    _displayLoader(key) {
-        let updateObj = Object.assign({}, this.state);
-        updateObj['showLoader']['loadingLoader'] = key;
+    _displayLoader(key){
+        let updateObj = Object.assign({},this.state);
+        updateObj['showLoader']['loadingLoader'] = key ;
         this.setState(updateObj);
     }
 
@@ -96,9 +95,9 @@ export class Login extends Component {
                 <KeyboardAvoidingView style={loginClass.container} >
                     <View >
                         <View style={loginClass.imgParnt}>
-                            <Text style={loginClass.heading} style={material.title}>Employee Tracking</Text>
-                            <Image style={loginClass.logoImage} source={logo} />
-                        </View>
+                            <Text style={ loginClass.heading } style={ material.title }>Employee Tracking</Text>
+                            <Image style={ loginClass.logoImage} source={ logo }/>
+                        </View>                        
                         <Item>
                             <Input type="text" placeholder="Email" onChangeText={(text) => { this.handler(text, 'email') }} value={this.state.email} />
                         </Item>
