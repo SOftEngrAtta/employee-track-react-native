@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import { material, robotoWeights } from 'react-native-typography';
 
 //component
-import { HeaderTab } from '../header/header';
+// import { HeaderTab } from '../header/header';
 
 
 // service 
@@ -42,7 +42,7 @@ export class Dashboard extends Component {
             <ImageBackground source={background} style={dashboardClass.backgroundImage} resizeMode="stretch">
               
                     <View>
-                        <HeaderTab title="Dashboard" />
+                        {/* <HeaderTab title="Dashboard" /> */}
                         <View style={dashboardClass.parntBody}>
                             <View style={dashboardClass.viewBody}>
                                 <View style={dashboardClass.flexRow}>
