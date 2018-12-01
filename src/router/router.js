@@ -22,9 +22,9 @@ export class Routers extends Component {
         return (
             <Router >
                 <Stack key="root" hideNavBar>
-                    <Scene key="login" component={Login}  title="login" initial />
+                    <Scene key="login" component={Login}  title="login"  />
                     <Scene key="signup" component={SignUp}  title="signup" />
-                    <Scene key="dashboard" component={Dashboard} title="dashboard" />
+                    <Scene key="dashboard" component={Dashboard} title="dashboard" initial/>
                 </Stack>
             </Router>
         )
