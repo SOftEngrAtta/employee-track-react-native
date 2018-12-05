@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, Button, ImageBackground, Image, FlexStyle } from 'react-native';
-import { Card } from 'react-native-elements'
-import { Actions } from 'react-native-router-flux';
+import { Header, Icon } from 'react-native-elements'
 import { material, robotoWeights } from 'react-native-typography';
 
-//component
-import { HeaderTab } from '../header/header';
+
 
 
 // service 
@@ -24,9 +22,8 @@ import tasks from '../../assets/tasks.jpg';
 import { dashboardClass } from './dashboardCls'
 
 
-let userId = '';
 
-export class Dashboard extends Component {
+export class DashboardComponent extends Component {
 
     componentDidMount() {
         getkey_data({ KeyName: 'Id' }).then(res => { userId = res; })
@@ -34,7 +31,6 @@ export class Dashboard extends Component {
 
     logout() {
         clearhistory();
-        Actions.login();
     }
 
     render() {
@@ -42,7 +38,17 @@ export class Dashboard extends Component {
             <ImageBackground source={background} style={dashboardClass.backgroundImage} resizeMode="stretch">
               
                     <View>
-                        <HeaderTab title="Dashboard" />
+                        <Header
+                            backgroundColor="#ec3d42e0"
+                            leftComponent={{ icon: 'menu', color: '#fff', backgroundColor: '#e74003' , onPress: () => this.props.navigation.openDrawer() } }
+                            centerComponent={{ text: 'Dashboard', style: { color: '#fff' , fontSize: 16 , fontWeight: 'bold'} }}
+                            rightComponent={
+                                <View style={headerClass.notificationPrn}>
+                                    <Icon name="notifications" size={25} color="#fff" />
+                                    <Text style={headerClass.notification}> 20 </Text>
+                                </View>
+                            }
+                        />
                         <View style={dashboardClass.parntBody}>
                             <View style={dashboardClass.viewBody}>
                                 <View style={dashboardClass.flexRow}>
@@ -108,5 +114,23 @@ export class Dashboard extends Component {
                     </View>
             </ImageBackground>
         )
+    }
+}
+
+
+const headerClass ={
+    notificationPrn : {
+        flex: 1, flexDirection: 'row',marginTop: 20
+    },
+    notification: {
+        height: 18 , 
+        borderWidth: 1,
+        borderColor: '#e74003',
+        borderRadius: 50 ,
+        fontSize: 13,
+        position: 'absolute',
+        color: '#e74003',
+        left:16, bottom: 10,
+        backgroundColor: "#fff"
     }
 }

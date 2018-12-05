@@ -6,7 +6,7 @@ import { Avatar } from 'react-native-elements';
 import { material , robotoWeights } from 'react-native-typography';
 
 import { Container, Header, Content, Form, Item, Input, Button } from 'native-base';
-import { Actions } from 'react-native-router-flux';
+// import { Actions } from 'react-native-router-flux';
 
 //services
 import { createAccount} from '../../../service/auth.service'
@@ -22,7 +22,7 @@ import logo from '../../../assets/logo.png';
 import background from '../../../assets/background.jpg';
 
 
-export class SignUp extends Component {
+export class SignUpComponent extends Component {
 
     constructor() {
         super();
@@ -56,7 +56,7 @@ export class SignUp extends Component {
                 .then(res => {
                     this._displayLoader('hide');
                     ToastAndroid.show('Create account successfully' , ToastAndroid.SHORT);
-                    Actions.login();
+                    // Actions.login();
                 }, err => {
                     this._displayLoader('hide');
                     if(err && err.message){
@@ -100,7 +100,7 @@ export class SignUp extends Component {
                         </Button>
                     </View>
                     <View style={signUpClass.loginPrnt} >
-                        <Text style={signUpClass.loginCls} onPress={ () =>  Actions.login() }>
+                        <Text style={signUpClass.loginCls}>
                             Sign In
                         </Text>
                     </View>

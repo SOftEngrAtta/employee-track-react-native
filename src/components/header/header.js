@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native'
+import { View, Text } from 'react-native';
 import { Header, Icon } from 'react-native-elements'
 //component 
 import { SideBarTab } from '../sidebar/sidebar'
@@ -25,20 +25,16 @@ export class HeaderTab extends Component {
         this.setState(updateobj);
     }
 
-    opensidemenu(){
-        let updateObj = Object.assign({}, this.state);
-        updateObj['showMenu'] = true;
-        this.setState(updateObj)
-    }
+   
 
     render() {
         return (
 
                 <View>
-                    <SideBarTab showMenu={ this.state.showMenu }/>
+
                     <Header
                         backgroundColor="#e74003"
-                        leftComponent={{ icon: 'menu', color: '#fff' , onPress: ()=> this.opensidemenu() } }
+                        leftComponent={{ icon: 'menu', color: '#fff'  } }
                         centerComponent={{ text: this.state.titleName, style: { color: '#fff' } }}
                         rightComponent={
                             <View style={headerClass.notificationPrn}>

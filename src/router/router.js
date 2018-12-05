@@ -1,32 +1,34 @@
-// modules
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import { Router, Scene, Stack , Actions  } from 'react-native-router-flux';
+import React , { Component } from "react";
+import { Dimensions } from 'react-native';
+import { createDrawerNavigator , createAppContainer } from "react-navigation";
 
-// components 
-import { Login } from '../components/authentication/login/login';
-import { SignUp } from '../components/authentication/singup/signup';
-import { Dashboard } from '../components/dashboard/dashboard';
+import { LoginComponent } from '../components/authentication/login/login';
+import { SignUpComponent } from '../components/authentication/singup/signup';
+import { DashboardComponent } from '../components/dashboard/dashboard';
+import { SideBarTab } from '../components/sidebar/sidebar'
 
-// services
-import { getkey_data , setkey_data } from '../service/storage.service';
+const Drawer = createDrawerNavigator({
+    Login: { 
+        screen: LoginComponent ,
+        navigationOptions: {
+            drawerLockMode: 'locked-closed',
+        }
+    },
+    SignUp: { 
+        screen: SignUpComponent 
+    },
+    Dashboard: { 
+        screen: DashboardComponent 
+    }
+},{
+    contentComponent: SideBarTab,
+    drawerWidth: Dimensions.get('window').width - 120,   
+});
 
+const MyApp = createAppContainer(Drawer);
 
-
-
-export class Routers extends Component {
-
-    
-
-    render() {
-        return (
-            <Router >
-                <Stack key="root" hideNavBar>
-                    <Scene key="login" component={Login}  title="login"  />
-                    <Scene key="signup" component={SignUp}  title="signup" />
-                    <Scene key="dashboard" component={Dashboard} title="dashboard" initial/>
-                </Stack>
-            </Router>
-        )
+export  class Routers extends Component {
+    render(){
+        return <MyApp />
     }
 }

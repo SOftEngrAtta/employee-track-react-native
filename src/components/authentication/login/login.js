@@ -2,12 +2,9 @@
 import React, { Component } from 'react';
 import { View, KeyboardAvoidingView, Text, ImageBackground, Image, ToastAndroid} from 'react-native';
 import { Icon } from 'react-native-elements';
-import { Avatar } from 'react-native-elements';
 import { material, robotoWeights } from 'react-native-typography';
 
-import { Container, Header, Content, Form, Item, Input, Button } from 'native-base';
-import { Actions } from 'react-native-router-flux';
-
+import {  Item, Input, Button } from 'native-base';
 
 //services
 import { setkey_data } from '../../../service/storage.service';
@@ -28,7 +25,7 @@ import background from '../../../assets/background.jpg';
 
 
 
-export class Login extends Component {
+export class LoginComponent extends Component {
 
     constructor() {
         super();
@@ -64,7 +61,7 @@ export class Login extends Component {
                     this._displayLoader('hide');
                     ToastAndroid.show('Login successfully', ToastAndroid.SHORT);
                     setkey_data({ 'KeyName': 'Id', 'KeyData': res.user._user.uid });
-                    Actions.dashboard();
+                    this.props.navigation.navigate('Dashboard');
 
                 }, err => {
 
@@ -114,7 +111,7 @@ export class Login extends Component {
                             <Text style={loginClass.lgnBtn.Text}>Sign In</Text>
                         </Button>
                         <View style={loginClass.cretaeAccountPrnt} >
-                            <Text style={loginClass.createAccountCls} onPress={() => Actions.signup()}>
+                            <Text style={loginClass.createAccountCls} >
                                 Create Account
                             </Text>
                         </View>
