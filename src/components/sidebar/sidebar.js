@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Dimensions, Image, Text } from 'react-native';
+import { View, TouchableHighlight, Image, Text } from 'react-native';
 
 // import { Icon } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -23,9 +23,12 @@ export class SideBarTab extends Component {
             <View >
                     <View style={sideMenuCls.container} >
                         <View style={sideMenuCls.profileBanner}>
-                            <View style={ sideMenuCls.signOut} >
-                                <Icon name="sign-out" size={20} color="#0778bdd1"/>
-                            </View>
+                            <TouchableHighlight onPress={ ()=> this.props.navigation.navigate('Login') }>
+                                <View style={ sideMenuCls.signOut} >
+                                    <Icon name="sign-out" size={20} color="#0778bdd1"/>
+                                </View>
+                            </TouchableHighlight>
+                            
                             <View style={sideMenuCls.profileImagePrnt}>
                                 <Image source={profileImage} style={sideMenuCls.profileImage} />
                             </View>
@@ -52,10 +55,13 @@ export class SideBarTab extends Component {
                             </View>
 
                         </View>
-                        <View style={ sideMenuCls.pagesPortionPrnt }>
-                            <Icon name="user" size={20} color="#fff" />
-                            <Text style={{ color: '#fff', fontSize: 14, marginLeft: 25 }}> Profile </Text>
-                        </View>
+                        <TouchableHighlight onPress={ ()=> this.props.navigation.navigate('Profile') }>
+                            <View style={ sideMenuCls.pagesPortionPrnt }>
+                                <Icon name="user" size={20} color="#fff" />
+                                <Text style={{ color: '#fff', fontSize: 14, marginLeft: 25 }}> Profile </Text>
+                            </View>
+                        </TouchableHighlight>
+                        
                         <View style={ sideMenuCls.pagesPortionPrnt }>
                             <Icon name="users" size={20} color="#fff" />
                             <Text style={{ color: '#fff', fontSize: 14, marginLeft: 20 }}> Groups </Text>

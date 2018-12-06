@@ -7,7 +7,7 @@ import { SideBarTab } from '../sidebar/sidebar'
 //css
 import { headerClass } from './headerCls';
 
-export class HeaderTab extends Component {
+export class HeaderComponent extends Component {
 
     constructor(props) {
         super(props)
@@ -25,7 +25,6 @@ export class HeaderTab extends Component {
         this.setState(updateobj);
     }
 
-   
 
     render() {
         return (
@@ -34,7 +33,9 @@ export class HeaderTab extends Component {
 
                     <Header
                         backgroundColor="#e74003"
-                        leftComponent={{ icon: 'menu', color: '#fff'  } }
+                        leftComponent={
+                            { icon: 'menu', color: '#fff' , onPress: ()=> this.props.navigation.goBack() } 
+                        }
                         centerComponent={{ text: this.state.titleName, style: { color: '#fff' } }}
                         rightComponent={
                             <View style={headerClass.notificationPrn}>
