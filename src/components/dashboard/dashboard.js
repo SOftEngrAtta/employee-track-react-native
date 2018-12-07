@@ -23,7 +23,7 @@ import { dashboardClass } from './dashboardCls'
 
 
 
-export class DashboardComponent extends Component {
+export class HomeComponent extends Component {
 
     componentDidMount() {
         getkey_data({ KeyName: 'Id' }).then(res => { userId = res; })

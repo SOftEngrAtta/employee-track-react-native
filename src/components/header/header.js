@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import { Header, Icon } from 'react-native-elements'
+import { View, Text , TouchableHighlight } from 'react-native';
+import { Header } from 'react-native-elements'
+import Icon from 'react-native-vector-icons/FontAwesome'
+
 //component 
 import { SideBarTab } from '../sidebar/sidebar'
 
@@ -19,30 +21,33 @@ export class HeaderComponent extends Component {
     }
     
     componentWillReceiveProps(nextprops) {
+        debugger
         const { title } = nextprops.title;
         let updateobj = Object.assign({}, this.state);
         updateobj['title'] = title;
         this.setState(updateobj);
     }
 
+    goPreviousHistory(){
+        debugger
+        console.log(this.props)
+    }
+
 
     render() {
         return (
-
                 <View>
-
                     <Header
-                        backgroundColor="#e74003"
+                        backgroundColor={ ( this.props.bgColor )? this.props.bgColor :"#e74003"}
                         leftComponent={
-                            { icon: 'menu', color: '#fff' , onPress: ()=> this.props.navigation.goBack() } 
+                            <TouchableHighlight onPress={ ()=> this.props.getHistory.navigation.goBack() }>
+                                <Icon name="arrow-left" size={20} color="#fff"/>                               
+                            </TouchableHighlight>
                         }
-                        centerComponent={{ text: this.state.titleName, style: { color: '#fff' } }}
-                        rightComponent={
-                            <View style={headerClass.notificationPrn}>
-                                <Icon name="notifications" size={25} color="#fff" />
-                                <Text style={headerClass.notification}> {this.state.notifications} </Text>
-                            </View>
-                        }
+                        centerComponent={{ text: this.props.title , style: { color: '#fff' } }}
+                        // rightComponent={
+                        //     ( this.props.title == )
+                        // }
                     />
                 </View>
         );
