@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { ImageBackground, Image, View, Text, Dimensions } from 'react-native';
-import { Input , Content, Form, Item, Label, Button } from 'native-base';
-import Icon from 'react-native-vector-icons/FontAwesome'
+import { ImageBackground, Image, View, Text, Dimensions , TouchableHighlight} from 'react-native';
+import { Input , Button } from 'native-base';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import ImagePicker from 'react-native-image-picker';
 
 //components
 import { HeaderComponent } from '../header/header';
@@ -17,43 +18,68 @@ import cristmistree from '../../assets/cristmisTress.jpg'
 
 let ScreenHeight = Dimensions.get("window").height;
 
+const options = {
+    title: 'My Photo',
+    takePhotoButtonTitle: 'Take Photo From Camera',
+    chooseFromLibraryButtonTitle: 'Choose Photo From Library '
+};
+
 export class ProfileComponent extends Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            avatarSource: userImage
+        }
+    }
+
+    getPhoto(){
+        ImagePicker.showImagePicker(options, (response) => {
+            console.log('Response = ', response);
+          
+            if (response.didCancel) {
+              console.log('User cancelled image picker');
+            } else if (response.error) {
+              console.log('ImagePicker Error: ', response.error);
+            } else {
+              const source = { uri: response.uri };
+          
+              // You can also display the image using data:
+              // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+          
+              this.setState({
+                avatarSource: source,
+              });
+            }
+        });
+    }
+
     render() {
         return (
             <ImageBackground source={background} style={profileCls.backgroundImage} resizeMode="stretch">
                 <HeaderComponent title="Profle" getHistory={this.props} bgColor="#e74003" />
-                <View style={{ width: "100%", height: ScreenHeight / 3, resizeMode: 'cover', top: -1, backgroundColor: '#e74003', justifyContent: 'center', alignItems: 'center' }}>
-                    <Image source={userImage} style={{ width: 100, height: 100, borderRadius: 100, borderRadius: 100, borderWidth: 2, borderColor: '#fff' }} />
-                    <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
+                <View style={ profileCls.profileImagePrnt }>
+                    <Image source={ this.state.avatarSource } style={ profileCls.profileImage } />
+                    <TouchableHighlight style={ profileCls.profileImageIcon } onPress={ this.getPhoto() }>
                         <Icon name="camera" size={30} color="#fff" />
                         <Text style={{ color: "#fff", marginTop: 10 }}> Take a photo </Text>
-                    </View>
+                    </TouchableHighlight>
                 </View>
-                {/* <ImageBackground source={cristmistree} style={{ flex: 1, width: null, height: ScreenHeight, backgroundColor: 'red' }}> */}
-                {/* <View style={{ backgroundColor: '#000', width: null, height: ScreenHeight, opacity: 0.5, top: -1 }}> */}
                 <View style={{ height: ScreenHeight , flex: 1}}>
-                    <View style={{ position: 'absolute', top: 0, left: 0, right: 0 , justifyContent: 'center' , alignItems: 'center', width: null}}>
-                        <Input placeholder="FullName"  style={{ fontSize: 14,color: '#e74003', borderBottomColor: '#e74003'  , borderBottomWidth : 2, height: 40, width: null, marginTop: 5,padding: 2, width: "80%"}}/>    
-                        <Input placeholder="Age"  style={{ fontSize: 14,color: '#e74003', borderBottomColor: '#e74003'  , borderBottomWidth : 2, height: 40, width: null, marginTop: 5,padding: 2, width: "80%"}}/>    
-                        <Input placeholder="Email address"  style={{ fontSize: 14,color: '#e74003', borderBottomColor: '#e74003'  , borderBottomWidth : 2, height: 40, width: null, marginTop: 5,padding: 2, width: "80%"}}/>    
-                        <Input placeholder="Contact number"  style={{ fontSize: 14,color: '#e74003', borderBottomColor: '#e74003'  , borderBottomWidth : 2, height: 40, width: null, marginTop: 5,padding: 2, width: "80%"}}/>    
-                        
+                    <View style={ profileCls.profileForm }>
+                        <Input placeholder="FullName" placeholderTextColor="#e74003"  style={ profileCls.profileFormInput }/>    
+                        <Input placeholder="Age"  placeholderTextColor="#e74003" style={ profileCls.profileFormInput }/>    
+                        <Input placeholder="Email address" placeholderTextColor="#e74003"  style={ profileCls.profileFormInput }/>    
+                        <Input placeholder="Contact number"  placeholderTextColor="#e74003" style={ profileCls.profileFormInput }/>    
+                        <View style={ profileCls.profileFormBtnPrnt }>
+                            <Button style={ profileCls.profileFormBtn }>
+                                <Text style={{ color: "#fff" }}>
+                                    Save
+                                </Text>
+                            </Button>
+                        </View>
                     </View> 
-                    {/* <Content>
-                        <Form>
-                            <Item floatingLabel>
-                                <Label>Username</Label>
-                                <Input />
-                            </Item>
-                            <Item floatingLabel last>
-                                <Label>Password</Label>
-                                <Input />
-                            </Item>
-                        </Form>
-                    </Content> */}
-
                 </View>
-                {/* </ImageBackground> */}
             </ImageBackground>
         )
     }
