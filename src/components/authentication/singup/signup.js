@@ -69,15 +69,11 @@ export class SignUpComponent extends Component {
             ToastAndroid.show('Please enter email and password', ToastAndroid.SHORT)
         }
     }
-
     _displayLoader(key){
         let updateObj = Object.assign({},this.state);
         updateObj['showLoader']['loadingLoader'] = key ;
         this.setState(updateObj);
     }
-
-
-
     render() {
         return (
             <ImageBackground source={ background } style={signUpClass.backgroundImage} resizeMode="stretch">

@@ -1,6 +1,6 @@
 // src\router\router-navigator.js
 
-import { createStackNavigator, createDrawerNavigator } from "react-navigation";
+import { createStackNavigator, createDrawerNavigator, createAppContainer } from "react-navigation";
 
 // screens
 import { Login } from '../components/authentication/login/login';
@@ -13,23 +13,28 @@ import { SideBarTab } from '../components/sidebar/sidebar';
 const stackNav = createStackNavigator({
     Login: { screen: Login },
     SignUp: { screen: SignUp },
-    Dashboard: { screen: Dashboard }
+    Dashboard: { screen: Dashboard },
+    Drawer: Drawer
+
 }, {
         initialRouteName: "Login",
         headerMode: "none"
-});
+    });
 
 const Drawer = createDrawerNavigator({
     Item1: { screen: stackNav }
-},{
-    contentComponent: SideBarTab,
-    drawerWidth: Dimensions.get('window').width - 120,   
-});
+}, {
+        contentComponent: SideBarTab,
+        drawerWidth: Dimensions.get('window').width - 120,
+    });
 
-const MyApp = createAppContainer(Drawer);
+const MyApp = createAppContainer(stackNav);
 
-export  class Routers extends Component {
-    render(){
+
+// your Root stack will always be a stacknavigator you dont need to use createDrawerNavigator
+// as your Root ok
+export class Routers extends Component {
+    render() {
         return <MyApp />
     }
 }

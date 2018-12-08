@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ImageBackground, Image, View, Text, Dimensions , TouchableHighlight} from 'react-native';
 import { Input , Button } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import ImagePicker from 'react-native-image-picker';
+// import ImagePicker from 'react-native-image-picker';
 
 //components
 import { HeaderComponent } from '../header/header';
@@ -34,24 +34,24 @@ export class ProfileComponent extends Component {
     }
 
     getPhoto(){
-        ImagePicker.showImagePicker(options, (response) => {
-            console.log('Response = ', response);
+        // ImagePicker.showImagePicker(options, (response) => {
+        //     console.log('Response = ', response);
           
-            if (response.didCancel) {
-              console.log('User cancelled image picker');
-            } else if (response.error) {
-              console.log('ImagePicker Error: ', response.error);
-            } else {
-              const source = { uri: response.uri };
+        //     if (response.didCancel) {
+        //       console.log('User cancelled image picker');
+        //     } else if (response.error) {
+        //       console.log('ImagePicker Error: ', response.error);
+        //     } else {
+        //       const source = { uri: response.uri };
           
-              // You can also display the image using data:
-              // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+        //       // You can also display the image using data:
+        //       // const source = { uri: 'data:image/jpeg;base64,' + response.data };
           
-              this.setState({
-                avatarSource: source,
-              });
-            }
-        });
+        //       this.setState({
+        //         avatarSource: source,
+        //       });
+        //     }
+        // });
     }
 
     render() {
