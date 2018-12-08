@@ -1,6 +1,6 @@
-import React , { Component } from "react";
+import React, { Component } from "react";
 import { Dimensions } from 'react-native';
-import { createDrawerNavigator , createAppContainer , createStackNavigator } from "react-navigation";
+import { createDrawerNavigator, createAppContainer, createStackNavigator } from "react-navigation";
 
 //screens 
 import { LoginComponent } from '../components/authentication/login/login';
@@ -11,28 +11,40 @@ import { ProfileComponent } from '../components/profile/profile';
 //drawer screen 
 import { SideBarTab } from '../components/sidebar/sidebar'
 
-const Drawer = createDrawerNavigator({
+const AppStack = createStackNavigator({
     Login: { screen: LoginComponent },
     SignUp: { screen: SignUpComponent },
     Home: { screen: HomeComponent },
     Profile: { screen: ProfileComponent }
-},{
-    initialRouteName: 'Home',
-    contentComponent: SideBarTab
-    // drawerWidth: Dimensions.get('window').width - 120,   
-});
+}, {
+        initialRouteName: 'Home',
+        headerMode: 'none'
+        // drawerWidth: Dimensions.get('window').width - 120,   
+    });
+
+
+const DrawerStack = createDrawerNavigator(
+    {
+        Main: AppStack
+    },
+    {
+        contentComponent: SideBarTab,
+        headerMode: 'none'
+        // initialRouteName: 'SelectInterpreterScreen'
+    }
+);
 
 const AppNavigator = createStackNavigator({
-    Drawer : { screen : Drawer}
-},{
-    initialRouteName: 'Drawer',
-    headerMode: 'none'
-})
+    Drawer: { screen: DrawerStack }
+}, {
+        initialRouteName: 'Drawer',
+        headerMode: 'none'
+    })
 
-const MyApp = createAppContainer(AppNavigator);
+const MyApp = AppNavigator;
 
-export  class Routers extends Component {
-    render(){
+export class Routers extends Component {
+    render() {
         return <MyApp />
     }
 }

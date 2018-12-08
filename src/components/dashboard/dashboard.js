@@ -40,7 +40,7 @@ export class HomeComponent extends Component {
                     <View>
                         <Header
                             backgroundColor="#ec3d42e0"
-                            leftComponent={{ icon: 'menu', color: '#fff', backgroundColor: '#e74003' , onPress: () => this.props.navigation.openDrawer() } }
+                            leftComponent={{ icon: 'menu', color: '#fff', backgroundColor: '#e74003' , onPress: () => this.props.navigation.toggleDrawer() } }
                             centerComponent={{ text: 'Dashboard', style: { color: '#fff' , fontSize: 16 , fontWeight: 'bold'} }}
                             rightComponent={
                                 <View style={headerClass.notificationPrn}>
