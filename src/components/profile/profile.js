@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ImageBackground, Image, View, Text, Dimensions , TouchableHighlight} from 'react-native';
 import { Input , Button } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
-// import ImagePicker from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-picker';
 
 //components
 import { HeaderComponent } from '../header/header';
@@ -33,25 +33,26 @@ export class ProfileComponent extends Component {
         }
     }
 
-    getPhoto(){
-        // ImagePicker.showImagePicker(options, (response) => {
-        //     console.log('Response = ', response);
+    getPhoto(data){
+        debugger
+        ImagePicker.showImagePicker(options, (response) => {
+            console.log('Response = ', response);
           
-        //     if (response.didCancel) {
-        //       console.log('User cancelled image picker');
-        //     } else if (response.error) {
-        //       console.log('ImagePicker Error: ', response.error);
-        //     } else {
-        //       const source = { uri: response.uri };
+            if (response.didCancel) {
+              console.log('User cancelled image picker');
+            } else if (response.error) {
+              console.log('ImagePicker Error: ', response.error);
+            } else {
+              const source = { uri: response.uri };
           
-        //       // You can also display the image using data:
-        //       // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+              // You can also display the image using data:
+              // const source = { uri: 'data:image/jpeg;base64,' + response.data };
           
-        //       this.setState({
-        //         avatarSource: source,
-        //       });
-        //     }
-        // });
+              this.setState({
+                avatarSource: source,
+              });
+            }
+        });
     }
 
     render() {
@@ -60,10 +61,11 @@ export class ProfileComponent extends Component {
                 <HeaderComponent title="Profle" getHistory={this.props} bgColor="#e74003" />
                 <View style={ profileCls.profileImagePrnt }>
                     <Image source={ this.state.avatarSource } style={ profileCls.profileImage } />
-                    <TouchableHighlight style={ profileCls.profileImageIcon } onPress={ this.getPhoto() }>
+                    <View style={ profileCls.profileImageIcon } onPress={ this.getPhoto('select Image') }>
                         <Icon name="camera" size={30} color="#fff" />
                         <Text style={{ color: "#fff", marginTop: 10 }}> Take a photo </Text>
-                    </TouchableHighlight>
+
+                    </View>
                 </View>
                 <View style={{ height: ScreenHeight , flex: 1}}>
                     <View style={ profileCls.profileForm }>

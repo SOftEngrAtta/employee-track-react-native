@@ -41,7 +41,7 @@ const AppNavigator = createStackNavigator({
         headerMode: 'none'
     })
 
-const MyApp = AppNavigator;
+const MyApp = createAppContainer(AppNavigator);
 
 export class Routers extends Component {
     render() {
