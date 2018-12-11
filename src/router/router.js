@@ -17,7 +17,7 @@ const AppStack = createStackNavigator({
     Home: { screen: HomeComponent },
     Profile: { screen: ProfileComponent }
 }, {
-        initialRouteName: 'Home',
+        initialRouteName: 'Login',
         headerMode: 'none'
         // drawerWidth: Dimensions.get('window').width - 120,   
     });

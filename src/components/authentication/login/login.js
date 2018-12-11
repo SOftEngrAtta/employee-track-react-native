@@ -61,7 +61,8 @@ export class LoginComponent extends Component {
                     this._displayLoader('hide');
                     ToastAndroid.show('Login successfully', ToastAndroid.SHORT);
                     setkey_data({ 'KeyName': 'Id', 'KeyData': res.user._user.uid });
-                    this.props.navigation.navigate('Dashboard');
+                    debugger
+                    this.props.navigation.navigate('Home');
 
                 }, err => {
 

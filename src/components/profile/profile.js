@@ -13,7 +13,6 @@ import { profileCls } from './profileCls'
 //images 
 import background from '../../assets/background.jpg';
 import userImage from '../../assets/useimage.jpg';
-import cristmistree from '../../assets/cristmisTress.jpg'
 
 
 let ScreenHeight = Dimensions.get("window").height;
@@ -61,11 +60,10 @@ export class ProfileComponent extends Component {
                 <HeaderComponent title="Profle" getHistory={this.props} bgColor="#e74003" />
                 <View style={ profileCls.profileImagePrnt }>
                     <Image source={ this.state.avatarSource } style={ profileCls.profileImage } />
-                    <View style={ profileCls.profileImageIcon } onPress={ this.getPhoto('select Image') }>
+                    <TouchableHighlight style={ profileCls.profileImageIcon } onPress={ ()=> this.getPhoto('select Image') }>
                         <Icon name="camera" size={30} color="#fff" />
-                        <Text style={{ color: "#fff", marginTop: 10 }}> Take a photo </Text>
-
-                    </View>
+                    </TouchableHighlight>
+                    <Text style={{ color: "#fff", marginTop: 10 }} onPress={ ()=> this.getPhoto('select Image') }> Take a photo </Text>
                 </View>
                 <View style={{ height: ScreenHeight , flex: 1}}>
                     <View style={ profileCls.profileForm }>
