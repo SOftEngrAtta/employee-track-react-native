@@ -21,7 +21,7 @@ export class HeaderComponent extends Component {
     }
     
     componentWillReceiveProps(nextprops) {
-        debugger
+        
         const { title } = nextprops.title;
         let updateobj = Object.assign({}, this.state);
         updateobj['title'] = title;
@@ -29,7 +29,7 @@ export class HeaderComponent extends Component {
     }
 
     goPreviousHistory(){
-        debugger
+        
         console.log(this.props)
     }
 

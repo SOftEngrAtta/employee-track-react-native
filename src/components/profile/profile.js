@@ -33,7 +33,7 @@ export class ProfileComponent extends Component {
     }
 
     getPhoto(data){
-        debugger
+        
         ImagePicker.showImagePicker(options, (response) => {
             console.log('Response = ', response);
           

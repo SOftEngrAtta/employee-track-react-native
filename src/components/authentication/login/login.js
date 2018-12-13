@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { View, KeyboardAvoidingView, Text, ImageBackground, Image, ToastAndroid} from 'react-native';
 import { Icon } from 'react-native-elements';
 import { material, robotoWeights } from 'react-native-typography';
+import SplashScreen from 'react-native-splash-screen'
 
 import {  Item, Input, Button } from 'native-base';
 
@@ -43,6 +44,8 @@ export class LoginComponent extends Component {
         }
     }
 
+    componentDidMount(){ SplashScreen.hide(); }
+
     handler(text, key) {
         let updateObj = Object.assign({}, this.state);
         updateObj['errorToastr']['message'] = '';
@@ -61,7 +64,7 @@ export class LoginComponent extends Component {
                     this._displayLoader('hide');
                     ToastAndroid.show('Login successfully', ToastAndroid.SHORT);
                     setkey_data({ 'KeyName': 'Id', 'KeyData': res.user._user.uid });
-                    debugger
+                    
                     this.props.navigation.navigate('Home');
 
                 }, err => {
@@ -90,6 +93,7 @@ export class LoginComponent extends Component {
     render() {
         return (
             <ImageBackground source={background} style={loginClass.backgroundImage} resizeMode="stretch">
+                
                 <KeyboardAvoidingView style={loginClass.container} >
                     <View >
                         <View style={loginClass.imgParnt}>

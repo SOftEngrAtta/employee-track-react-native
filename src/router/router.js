@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Dimensions } from 'react-native';
+import { StatusBar } from 'react-native';
 import { createDrawerNavigator, createAppContainer, createStackNavigator } from "react-navigation";
 
 //screens 
@@ -17,7 +17,7 @@ const AppStack = createStackNavigator({
     Home: { screen: HomeComponent },
     Profile: { screen: ProfileComponent }
 }, {
-        initialRouteName: 'Login',
+        initialRouteName: 'Home',
         headerMode: 'none'
         // drawerWidth: Dimensions.get('window').width - 120,   
     });
@@ -28,20 +28,19 @@ const DrawerStack = createDrawerNavigator(
         Main: AppStack
     },
     {
-        contentComponent: SideBarTab,
-        headerMode: 'none'
+        contentComponent: SideBarTab
         // initialRouteName: 'SelectInterpreterScreen'
     }
 );
 
-const AppNavigator = createStackNavigator({
-    Drawer: { screen: DrawerStack }
-}, {
-        initialRouteName: 'Drawer',
-        headerMode: 'none'
-    })
+// const AppNavigator = createStackNavigator({
+//     Drawer: { screen: DrawerStack }
+// }, {
+//         initialRouteName: 'Drawer',        
+//         headerMode: 'none'
+//     })
 
-const MyApp = createAppContainer(AppNavigator);
+const MyApp = createAppContainer(DrawerStack);
 
 export class Routers extends Component {
     render() {

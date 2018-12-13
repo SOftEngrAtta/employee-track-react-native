@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { View, TouchableHighlight, Image, Text } from 'react-native';
+import React, { Component , } from 'react';
+import { View, TouchableHighlight, Image, Text  } from 'react-native';
 
 // import { Icon } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -14,9 +14,11 @@ import tasks from '../../assets/tasks.jpg';
 
 //css
 import { sideMenuCls } from './sidebarCls'
+import { App } from 'react-native-firebase';
 
 
 export class SideBarTab extends Component {
+
 
     render() {
         return (
