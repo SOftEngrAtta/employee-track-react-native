@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, ImageBackground, Image, FlexStyle } from 'react-native';
+import { View, Text, Button, ImageBackground, Image, TouchableOpacity } from 'react-native';
 import { Header, Icon } from 'react-native-elements'
 import { material, robotoWeights } from 'react-native-typography';
 
@@ -29,8 +29,8 @@ export class HomeComponent extends Component {
         getkey_data({ KeyName: 'Id' }).then(res => { userId = res; })
     }
 
-    logout() {
-        clearhistory();
+    openscreen(page){
+        this.props.navigation.navigate(page);
     }
 
     render() {
@@ -52,7 +52,7 @@ export class HomeComponent extends Component {
                         <View style={dashboardClass.parntBody}>
                             <View style={dashboardClass.viewBody}>
                                 <View style={dashboardClass.flexRow}>
-                                    <View style={dashboardClass.flexRowWidth}>
+                                    <TouchableOpacity style={dashboardClass.flexRowWidth} onPress={ () => this.openscreen('UsersStatu') }>
                                         <View style={dashboardClass.flexRowImagePrntDiv}>
                                             <View style={dashboardClass.flexRowImageDiv}>
                                                 <Image source={usersview} style={dashboardClass.flexRowImage} />
@@ -64,7 +64,7 @@ export class HomeComponent extends Component {
                                         <View style={dashboardClass.totalCountPrnt}>
                                             <Text style={dashboardClass.totalCount}> 50 </Text>
                                         </View>
-                                    </View>
+                                    </TouchableOpacity>
                                     <View style={dashboardClass.flexRowWidth}>
                                         <View style={dashboardClass.flexRowImagePrntDiv}>
                                             <View style={dashboardClass.flexRowImageDiv}>

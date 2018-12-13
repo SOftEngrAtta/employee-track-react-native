@@ -6,6 +6,7 @@ import { createDrawerNavigator, createAppContainer, createStackNavigator } from 
 import { LoginComponent } from '../components/authentication/login/login';
 import { SignUpComponent } from '../components/authentication/singup/signup';
 import { HomeComponent } from '../components/dashboard/dashboard';
+import { StatusComponent } from '../components/view-status/status'
 import { ProfileComponent } from '../components/profile/profile';
 
 //drawer screen 
@@ -15,9 +16,10 @@ const AppStack = createStackNavigator({
     Login: { screen: LoginComponent },
     SignUp: { screen: SignUpComponent },
     Home: { screen: HomeComponent },
+    UsersStatu: { screen: StatusComponent },
     Profile: { screen: ProfileComponent }
 }, {
-        initialRouteName: 'Home',
+        initialRouteName: 'Login',
         headerMode: 'none'
         // drawerWidth: Dimensions.get('window').width - 120,   
     });
@@ -33,14 +35,14 @@ const DrawerStack = createDrawerNavigator(
     }
 );
 
-// const AppNavigator = createStackNavigator({
-//     Drawer: { screen: DrawerStack }
-// }, {
-//         initialRouteName: 'Drawer',        
-//         headerMode: 'none'
-//     })
+const AppNavigator = createStackNavigator({
+    Drawer: { screen: DrawerStack }
+}, {
+        initialRouteName: 'Drawer',        
+        headerMode: 'none'
+    })
 
-const MyApp = createAppContainer(DrawerStack);
+const MyApp = createAppContainer(AppNavigator);
 
 export class Routers extends Component {
     render() {
